@@ -1,5 +1,4 @@
-﻿using BasicOf.NetFrameworkAndC;
-using Modules.DevelopmentAndBuildTools;
+﻿using Modules.DevelopmentAndBuildTools;
 using System;
 using System.Linq;
 
