@@ -19,6 +19,7 @@ namespace Modules.Interfaces_and_abstract_classes
             //дрон зависает в воздухе каждые 10 минут полета на 1 минуту
             int amountPause = (int)((distance / speed) * 60 / 10);
             double flyTime = (distance / speed) * 60 + amountPause * 1;
+
             return flyTime;
         }
         public string FlyTo(Coordinates point)

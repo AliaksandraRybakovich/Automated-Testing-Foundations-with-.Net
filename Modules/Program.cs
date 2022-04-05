@@ -22,7 +22,10 @@ namespace Modules
             {
                 try
                 {
-                    Console.WriteLine($"Выберете летательный аппарат: \n1. {FlyTransports.Птица}\n2. {FlyTransports.Дрон} \n3. {FlyTransports.Самолёт} \n");
+                    Console.WriteLine($"Выберете летательный аппарат: " +
+                        $"\n1. {FlyTransports.Птица}" +
+                        $"\n2. {FlyTransports.Дрон} " +
+                        $"\n3. {FlyTransports.Самолёт} \n");
                     int flyTransport = int.Parse(Console.ReadLine());
                     if (flyTransport == 1 || flyTransport == 2 || flyTransport == 3)
                     {
@@ -39,6 +42,7 @@ namespace Modules
                             Y = Y,
                             Z = Z
                         };
+
                         Console.WriteLine("Введите конечную координату:");
                         Console.WriteLine("Координата X");
                         uint X1 = uint.Parse(Console.ReadLine());
@@ -52,19 +56,24 @@ namespace Modules
                             Y = Y1,
                             Z = Z1
                         };
+
                         switch (flyTransport)
                         {
                             case 1:
                                 var bird = new Bird(FlyTransports.Птица, currentPosition);
-                                Console.WriteLine($"{bird.FlyTo(destinationPoint)} \nВремя полета {bird.GetFlyTime(destinationPoint)} минут \nСкорость птицы {bird.speed}");
+                                Console.WriteLine($"{bird.FlyTo(destinationPoint)} " +
+                                    $"\nВремя полета {bird.GetFlyTime(destinationPoint)} минут " +
+                                    $"\nСкорость птицы {bird.speed}");
                                 break;
                             case 2:
                                 var dron = new Dron(FlyTransports.Дрон, currentPosition);
-                                Console.WriteLine($"{dron.FlyTo(destinationPoint)}\nВремя полета {dron.GetFlyTime(destinationPoint)} минут");
+                                Console.WriteLine($"{dron.FlyTo(destinationPoint)}" +
+                                    $"\nВремя полета {dron.GetFlyTime(destinationPoint)} минут");
                                 break;
                             case 3:                                
                                 var airplane = new Airplane(FlyTransports.Самолёт, currentPosition);
-                                Console.WriteLine($"{airplane.FlyTo(destinationPoint)}\nВремя полета {airplane.GetFlyTime(destinationPoint)} минут");
+                                Console.WriteLine($"{airplane.FlyTo(destinationPoint)}" +
+                                    $"\nВремя полета {airplane.GetFlyTime(destinationPoint)} минут");
                                 break;
                         }
                     }
@@ -76,8 +85,7 @@ namespace Modules
                 catch (Exception ex)
                 {
                     Console.WriteLine("Ошибка!" + ex.Message);
-                }
-               
+                }               
             }
 
         }
