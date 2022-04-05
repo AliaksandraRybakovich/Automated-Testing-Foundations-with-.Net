@@ -11,19 +11,22 @@ namespace BasicOf.NetFramework
             {
                 throw new ArgumentException("Введите число от 2 до 20");
             }
+
             var result = string.Empty;
-            List<char> alphabet = new List<char>() { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }; 
+            List<char> alphabet = new List<char>()
+            { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
             List<string> arr = new List<string>();
+
             while (number > 0)
             {
-                var remainderDivision = number % numericSystem;
-                if (remainderDivision >= 10)
+                var divisionRemainder = number % numericSystem;
+                if (divisionRemainder >= 10)
                 {
-                    arr.Add(alphabet[remainderDivision].ToString()); 
+                    arr.Add(alphabet[divisionRemainder].ToString());
                 }
                 else
                 {
-                    arr.Add(remainderDivision.ToString());
+                    arr.Add(divisionRemainder.ToString());
                 }
                 number /= numericSystem;
             }
