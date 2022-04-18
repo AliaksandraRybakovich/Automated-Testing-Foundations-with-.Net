@@ -3,10 +3,11 @@ using System;
 
 namespace Modules.OOP.Transports
 {
-    class Bus : Transport
+    public class Bus : Transport
     {
         public int NumberRoute { get; set; }
 
+        public Bus() { }
         public Bus(int numberRoute, string nameTransport, Engine engine, Chassis chassis, Transmission transmission)
             : base(nameTransport, engine, chassis, transmission)
         {

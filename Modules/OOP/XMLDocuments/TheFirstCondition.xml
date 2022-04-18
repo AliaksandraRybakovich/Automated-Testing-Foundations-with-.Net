@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<ArrayOfTransport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Transport xsi:type="Car">
+    <NameTransport>ЛЕГКОВОЙ АВТОМОБИЛЬ</NameTransport>
+    <Engine>
+      <NameDetails>Двигатель</NameDetails>
+      <Power>92</Power>
+      <Volume>1.6</Volume>
+      <Type>Электрический</Type>
+      <SerialNumber>5469853LK</SerialNumber>
+    </Engine>
+    <Chassis>
+      <NameDetails>Шасси</NameDetails>
+      <AmountWheels>4</AmountWheels>
+      <Number>3325649</Number>
+      <PermissionLoad>1.7</PermissionLoad>
+    </Chassis>
+    <Transmission>
+      <NameDetails>Трансмиссия</NameDetails>
+      <Type>Переднеприводный</Type>
+      <AmountGears>5</AmountGears>
+      <Manufacture>Lithuania</Manufacture>
+    </Transmission>
+    <Speed10Seconds>92.1</Speed10Seconds>
+  </Transport>
+  <Transport xsi:type="Truck">
+    <NameTransport>ГРУЗОВИК</NameTransport>
+    <Engine>
+      <NameDetails>Двигатель</NameDetails>
+      <Power>180</Power>
+      <Volume>1.6</Volume>
+      <Type>Газ</Type>
+      <SerialNumber>2223569J</SerialNumber>
+    </Engine>
+    <Chassis>
+      <NameDetails>Шасси</NameDetails>
+      <AmountWheels>4</AmountWheels>
+      <Number>002154</Number>
+      <PermissionLoad>2.5</PermissionLoad>
+    </Chassis>
+    <Transmission>
+      <NameDetails>Трансмиссия</NameDetails>
+      <Type>Заднеприводный</Type>
+      <AmountGears>5</AmountGears>
+      <Manufacture>Russia</Manufacture>
+    </Transmission>
+    <LoadCapacity>3</LoadCapacity>
+  </Transport>
+  <Transport xsi:type="Truck">
+    <NameTransport>ГРУЗОВИК</NameTransport>
+    <Engine>
+      <NameDetails>Двигатель</NameDetails>
+      <Power>240</Power>
+      <Volume>1.8</Volume>
+      <Type>Газ</Type>
+      <SerialNumber>8845791G</SerialNumber>
+    </Engine>
+    <Chassis>
+      <NameDetails>Шасси</NameDetails>
+      <AmountWheels>4</AmountWheels>
+      <Number>950236</Number>
+      <PermissionLoad>4.75</PermissionLoad>
+    </Chassis>
+    <Transmission>
+      <NameDetails>Трансмиссия</NameDetails>
+      <Type>Полноприводный</Type>
+      <AmountGears>6</AmountGears>
+      <Manufacture>Japan</Manufacture>
+    </Transmission>
+    <LoadCapacity>4</LoadCapacity>
+  </Transport>
+</ArrayOfTransport>

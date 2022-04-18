@@ -1,8 +1,13 @@
 ﻿using Modules.OOP.Details;
 using System;
+using System.Xml.Serialization;
 
 namespace Modules.OOP.Transports
 {
+    [XmlInclude(typeof(Car))]
+    [XmlInclude(typeof(Scooter))]
+    [XmlInclude(typeof(Bus))]
+    [XmlInclude(typeof(Truck))]
     public abstract class Transport
     {
         public string NameTransport { get; set; }
@@ -10,6 +15,7 @@ namespace Modules.OOP.Transports
         public Chassis Chassis { get; set; }
         public Transmission Transmission { get; set; }
 
+        public Transport() { }
         public Transport(string nameTransport, Engine engine, Chassis chassis, Transmission transmission)
         {
             NameTransport = nameTransport;
