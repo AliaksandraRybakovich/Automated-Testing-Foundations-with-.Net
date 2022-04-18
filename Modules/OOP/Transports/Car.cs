@@ -7,6 +7,7 @@ namespace Modules.OOP.Transports
     {
         public double Speed10Seconds { get; set; }
 
+        public Car() { }
         public Car(double speed10Seconds, string nameTransport, Engine engine, Chassis chassis, Transmission transmission)
             : base(nameTransport, engine, chassis, transmission)
         {

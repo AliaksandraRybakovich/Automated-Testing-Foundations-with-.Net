@@ -8,6 +8,8 @@ namespace Modules.OOP.Details
         public string Number { get; set; }
         public double PermissionLoad { get; set; }
 
+        public Chassis() { }
+
         public Chassis(int amountWheels, string number, double permissionLoad, NameDetails nameChassis) 
             : base(nameChassis) 
         {

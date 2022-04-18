@@ -9,6 +9,7 @@ namespace Modules.OOP.Details
         public int AmountGears { get; set; }
         public string Manufacture { get; set; }
 
+        public Transmission() { }
         public Transmission(TypeTransmission type, int amountGears, string manufacture, NameDetails nameTransmission)
             : base(nameTransmission)
         {

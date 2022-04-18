@@ -3,10 +3,11 @@ using System;
 
 namespace Modules.OOP.Transports
 {
-    class Scooter : Transport
+    public class Scooter : Transport
     {
         public double MaxSpeed { get; set; }
 
+        public Scooter() { }
         public Scooter(double maxSpeed, string nameTransport, Engine engine, Chassis chassis, Transmission transmission)
             : base(nameTransport, engine, chassis, transmission)
         {

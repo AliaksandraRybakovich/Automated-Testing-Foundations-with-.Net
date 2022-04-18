@@ -9,6 +9,7 @@ namespace Modules.OOP.Details
         public TypeEngine Type { get; set; }
         public string SerialNumber { get; set; }
 
+        public Engine() { }
         public Engine(int power, double volume, TypeEngine type, string serialNumber, NameDetails nameEngine)
             : base(nameEngine)
         {
