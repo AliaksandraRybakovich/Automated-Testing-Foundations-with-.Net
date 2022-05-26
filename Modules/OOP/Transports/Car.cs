@@ -1,5 +1,5 @@
 ﻿using Modules.OOP.Details;
-using System;
+using Modules.OOP.Exceptions;
 
 namespace Modules.OOP.Transports
 {
@@ -13,7 +13,7 @@ namespace Modules.OOP.Transports
         {
             if (chassis.AmountWheels != 4)
             {
-                throw new Exception("У Легкового автомобиля 4 колеса");
+                throw new InitializationException("У Легкового автомобиля 4 колеса");
             }
             Speed10Seconds = speed10Seconds;
         }

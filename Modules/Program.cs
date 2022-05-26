@@ -1,5 +1,6 @@
 ﻿using Modules.OOP;
 using Modules.OOP.Details;
+using Modules.OOP.Exceptions;
 using Modules.OOP.Transports;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,59 @@ namespace Modules
         {
             Console.WriteLine(string.Join("", Enumerable.Repeat("-", 70)));
             Console.Write(string.Join("", Enumerable.Repeat("-", 15)));
-            Console.Write(" Module: Collections ");
+            Console.Write(" Module: Exceptions ");
             Console.WriteLine(string.Join("", Enumerable.Repeat("-", 15)));
             Console.WriteLine(string.Join("", Enumerable.Repeat("-", 70)));
 
             Console.OutputEncoding = Encoding.UTF8;
 
             var transports = GetTransport();
+
+            try
+            {
+                Add(new Truck(4, NameTransport.Truck,
+                    new Engine(280, 1.8, TypeEngine.Газ, "8845791G", NameDetails.Двигатель),
+                    new Chassis(4, "15748624", 4.75, NameDetails.Шасси),
+                    new Transmission(TypeTransmission.Полноприводный, 6, "Japan", NameDetails.Трансмиссия)));
+            }
+            catch (AddException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var userTransportParameter = GetAutoByParameter("Power", "100");
+                foreach (var item in userTransportParameter)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            catch (GetAutoByParameterException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                UpdateAuto(5, new Truck(4, NameTransport.Truck,
+                    new Engine(280, 1.8, TypeEngine.Газ, "8845791G", NameDetails.Двигатель),
+                    new Chassis(4, "15748624", 4.75, NameDetails.Шасси),
+                    new Transmission(TypeTransmission.Полноприводный, 6, "Japan", NameDetails.Трансмиссия)));
+            }
+            catch (UpdateAutoException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                RemoveAuto(5);
+            }
+            catch (RemoveAutoException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             XmlSerializer serializerforTransportParamVolume = new XmlSerializer(typeof(List<Transport>));
             using (FileStream fs = new FileStream(@"..\..\..\OOP\XMLDocuments\TheFirstCondition.xml", FileMode.OpenOrCreate))
@@ -67,7 +114,9 @@ namespace Modules
 
         private static List<Transport> GetTransport()
         {
-            return new List<Transport> {
+            try
+            {
+                var allTransports = new List<Transport> {
                 new Car(96.7, NameTransport.Car,
                     new Engine(100, 1.4, TypeEngine.Дизель, "1234523RT", NameDetails.Двигатель),
                     new Chassis(4, "173678263", 2, NameDetails.Шасси),
@@ -120,6 +169,97 @@ namespace Modules
                     new Chassis(4, "950236", 4.75, NameDetails.Шасси),
                     new Transmission(TypeTransmission.Полноприводный, 6, "Japan", NameDetails.Трансмиссия)),
             };
+
+                return allTransports;
+            }
+            catch (InitializationException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            catch (AddException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public static void Add(Transport transport)
+        {
+            var transports = GetTransport();
+            if (transport.NameTransport == "Водитель")
+            {
+                throw new AddException("Ошибка! Невозможно добавить авто!");
+            }
+            else
+            {
+                transports.Add(transport);
+            }
+        }
+
+        public static List<Transport> GetAutoByParameter(string parameter, string value)
+        {
+            var alltranspotrs = GetTransport();
+            var transportWithParameter = new List<Transport>();
+            foreach (var vehicle in alltranspotrs)
+            {
+                var properties = vehicle.GetType().GetProperties();
+
+                foreach (var property in properties)
+                {
+                    var propertyValue = property.GetValue(vehicle);
+                    var valueType = propertyValue.GetType();
+                    if (valueType == typeof(Chassis) || valueType == typeof(Engine) || valueType == typeof(Transmission))
+                    {
+                        var innerProperties = valueType.GetProperties();
+                        foreach (var innerProperty in innerProperties)
+                        {
+                            var innerValue = innerProperty.GetValue(propertyValue);
+                            if (innerProperty.Name == parameter && innerValue.ToString() == value)
+                            {
+                                transportWithParameter.Add(vehicle);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (property.Name == parameter && propertyValue.ToString() == value)
+                        {
+                            transportWithParameter.Add(vehicle);
+                        }
+                    }
+                }
+            }
+            if (!transportWithParameter.Any())
+            {
+                throw new GetAutoByParameterException("Невозможно найти машинус такими параметрами!");
+            }
+            return transportWithParameter;
+        }
+        public static void UpdateAuto(int id, Transport transport)
+        {
+            var transports = GetTransport();
+            if ((id < 0) || (id > transports.Count))
+            {
+                throw new UpdateAutoException("Ошибка! Невозможно заменить авто!");
+            }
+            else
+            {
+                transports[id] = transport;
+            }
+        }
+
+        public static void RemoveAuto(int id)
+        {
+            var transports = GetTransport();
+            if ((id < 0) || (id > transports.Count))
+            {
+                throw new RemoveAutoException("Ошибка! Невозможно удалить авто");
+            }
+            else
+            {
+                transports.Remove(transports[id]);
+            }
         }
     }
 }
