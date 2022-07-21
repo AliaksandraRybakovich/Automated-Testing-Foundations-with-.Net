@@ -8,8 +8,9 @@ namespace Modules.ObjectOrientedDesignPrinciples.Commands
 
         public CountTypesCommand()
         {
-            this._receiver = new Receiver();
-        }
+            this._receiver = Receiver.GetInstance();
+        } 
+
         public void Execute(List<Car> cars)
         {
             _receiver.CountTypes(cars);

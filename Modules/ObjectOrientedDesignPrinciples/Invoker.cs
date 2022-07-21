@@ -5,9 +5,8 @@ namespace Modules.ObjectOrientedDesignPrinciples
 {
     public class Invoker
     {
-        ICommand command;
-        public List<Car> _cars;
-        public Invoker() { }
+        private ICommand command;
+        private List<Car> _cars;
 
         public void SetCommand(int userCommand)
         {
@@ -30,10 +29,12 @@ namespace Modules.ObjectOrientedDesignPrinciples
                     break;
             }
         }
-        public void SetCar(List<Car> cars)
+
+        public void SetCars(List<Car> cars)
         {
             _cars = cars;
         }
+
         public void Do()
         {
             command.Execute(_cars);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Modules.ObjectOrientedDesignPrinciples
+﻿namespace Modules.ObjectOrientedDesignPrinciples
 {
     public class Car
     {

@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Modules.ObjectOrientedDesignPrinciples
 {
     public class Receiver
     {
+        private Receiver() { }
+        private static Receiver _instance; 
+        public static Receiver GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new Receiver();
+            }
+            return _instance;
+        }
+
         public void CountTypes(List<Car> cars)
         {
             var countTypes = cars.Select(m => m.Brand).Distinct().Count();
@@ -28,17 +38,17 @@ namespace Modules.ObjectOrientedDesignPrinciples
 
         public void AveragePriceType(List<Car> cars)
         {
-            var avgPriceType = cars.Select(m => m.Cost).ToList();
-            Console.WriteLine("средняя стоимость автомобилей каждой марки:");
+            var avgPriceType = cars.GroupBy(b => b.Brand).Select(p => new { p.Key, CostAverage = p.Average(o=>o.Cost) });
+            Console.WriteLine($"средняя стоимость автомобилей каждой марки:");
             foreach (var item in avgPriceType)
             {
-                Console.WriteLine(item);
-            }
+                Console.WriteLine($"\n Company: {item.Key}  Cost: {item.CostAverage}");
+            }         
         }
+
         public void Exit(List<Car> cars)
         {
-            Environment.FailFast("Exit!");
-            Environment.Exit(0);
+            Environment.Exit(0);            
         }
     }
 }
