@@ -13,7 +13,7 @@ namespace Modules.ObjectOrientedDesignPrinciples.Commands
 
         public void Execute(List<Car> cars)
         {
-            _receiver.Exit(cars);
+            _receiver.Exit();
         }
     }
 }

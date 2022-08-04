@@ -38,15 +38,15 @@ namespace Modules.ObjectOrientedDesignPrinciples
 
         public void AveragePriceType(List<Car> cars)
         {
-            var avgPriceType = cars.GroupBy(b => b.Brand).Select(p => new { p.Key, CostAverage = p.Average(o=>o.Cost) });
+            var avgPriceType = cars.GroupBy(b => b.Brand).Select(p => new { p.Key, averageCost = p.Average(o=>o.Cost) });
             Console.WriteLine($"средняя стоимость автомобилей каждой марки:");
             foreach (var item in avgPriceType)
             {
-                Console.WriteLine($"\n Company: {item.Key}  Cost: {item.CostAverage}");
+                Console.WriteLine($"\n Company: {item.Key}  Cost: {item.averageCost}");
             }         
         }
 
-        public void Exit(List<Car> cars)
+        public void Exit()
         {
             Environment.Exit(0);            
         }
