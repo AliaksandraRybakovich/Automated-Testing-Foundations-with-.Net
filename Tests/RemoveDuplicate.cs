@@ -4,25 +4,18 @@ using System;
 
 namespace Tests
 {
-    public class Tests
+    public class RemoveDuplicate : BaseTest
     {
-        string actual;
-        string expected;
-
-        [SetUp]
-        public void Setup()
-        {
-            Console.WriteLine("Begin Test of Method 'RemoveDuplicate' ");
-        }
+        public RemoveDuplicate() : base("RemoveDuplicate")
+        { }
 
         [Test]
-        [Category ("RemoveDuplicate")]
         [TestCase("fffttt444")]
-        public void CheckRemoveDuplicate(string message)
+        public void CheckRemoveDuplicateReturnsCorrectValue(string message)
         {
             //act
-            actual = UniqueCharacters.RemoveDuplicate(message);
-            expected = "ft4";
+            var actual = UniqueCharacters.RemoveDuplicate(message);
+            var expected = "ft4";
 
             //assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -30,16 +23,10 @@ namespace Tests
 
         [Test]
         [TestCase("")]
-        public void CheckNullUniqueCharacters(string message)
+        public void CheckRemoveDuplicateThrowsExceptionWhenInputStringIsEmpty(string message)
         {
             //assert    
            Assert.Throws<ArgumentException>(() => UniqueCharacters.RemoveDuplicate(message));
-        }
-
-        [TearDown]
-        public void Postcondition()
-        {
-            Console.WriteLine("End");
         }
     }
 }
